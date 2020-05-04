@@ -18,35 +18,36 @@
 
 				<form id="formDoctor" name="formDoctor">
 				
-					Full name:<input id="fName" name="fName" type="text"
+					Full name:<input id="dName" name="dName" type="text"
 						class="form-control form-control-sm"> <br>
 						
-					Speciality: <input id="speciality" name="speciality" type="text"
+					Specialization: <input id="dSpecialization" name="dSpecialization" type="text"
 						class="form-control form-control-sm"> <br>
 				
-					Address (permanent): <input id="address" name="address" type="text"
+					Address (permanent): <input id="dAddress" name="dAddress" type="text"
 						class="form-control form-control-sm"> <br>	
 				
-					Email: <input id="email" name="email" type="email"
+					Email: <input id="dEmail" name="dEmail" type="email"
 						class="form-control form-control-sm"> <br>
 				
-					Charge: <input id="charge" name="charge" type="number"
+					Charge: <input id="dFee" name="dFee" type="number"
 						class="form-control form-control-sm"> <br>
 					
-					Working Hospital (gov): <input id="workingHospital" name="workingHospital" type="text"
+					Working Hospital (gov): <input id="dWHospital" name="dWHospital" type="text"
 						class="form-control form-control-sm"> <br>
-						
+					<!-- 	
 					Username: <input id="username" name="username" type="text"
 						class="form-control form-control-sm"> <br>
 					
 					Password: <input id="password" name="password" type="password"
 						class="form-control form-control-sm"> <br>
 					
-
-					</select> <br> <input id="btnSave" name="btnSave" type="button"
+ -->
+					 <br> <input id="btnSave" name="btnSave" type="button"
 						value="Save" class="btn btn-primary"> <input type="hidden"
 						id="hidItemIDSave" name="hidItemIDSave" value="">
 				</form>
+				<hr>
 				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
 				<br>
@@ -59,11 +60,15 @@
 				<div class="container">
 					<h2>Doctors Table</h2>
 					<p>Available Doctors In The System</p>
-					<table class="table table-striped" id="doctorTable">
+					<div id="table">
+					
+					
+					</div>
+					<!-- <table class="table table-striped" id="doctorTable">
 						<thead>
 							<tr>
 								<th>Full Name</th>
-								<th>Speciality</th>
+								<th>Specialization</th>
 								<th>Email</th>
 								<th>Address</th>
 								<th>Charge</th>
@@ -75,7 +80,7 @@
 						<tbody>
 							
 						</tbody>
-					</table>
+					</table> -->
 				</div>
 			</div>
 		</div>
