@@ -40,7 +40,7 @@ public class AuthModel {
 
 	}
 	
-	
+	//jkj
 	
 public Response insertUsers(UserBean user ) {
 	

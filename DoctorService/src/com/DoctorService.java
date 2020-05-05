@@ -21,6 +21,8 @@ import model.Doctor;
 @PermitAll
 public class DoctorService {
 	
+
+	
 	Doctor doc = new Doctor();
 	
 	@RolesAllowed("admin")
@@ -30,14 +32,20 @@ public class DoctorService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String addDoctor(String docData)
 	{
+		System.out.println("Insert start");
+
 		JsonObject docObject = new JsonParser().parse(docData).getAsJsonObject();
-		
+		System.out.println("1");
+
 		String name = docObject.get("dName").getAsString();
 		String specialization = docObject.get("dSpecialization").getAsString();
 		String address = docObject.get("dAddress").getAsString();
 		String email = docObject.get("dEmail").getAsString();
 		String fee = docObject.get("dFee").getAsString();
 		String hospital = docObject.get("dWHospital").getAsString();
+		
+		System.out.println("2");
+
 		
 		String output = doc.addDoctors(name, specialization, address, email, fee, hospital);
 		
@@ -46,7 +54,7 @@ public class DoctorService {
 	
 	@RolesAllowed({ "admin","patient" })
 	@GET
-	@Path("/readDoctors")
+	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String readDoctors()
 	{
@@ -61,6 +69,7 @@ public class DoctorService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateDoctor(String docData)
 	{
+	
 		JsonObject docObject = new JsonParser().parse(docData).getAsJsonObject();
 				//JsonParser().parse(docData).getAsJsonObject();
 	
@@ -103,10 +112,11 @@ public class DoctorService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteDoctor(String docData)
 	{
+		System.out.println("Delete start");
 		JsonObject jsonObject = new JsonParser().parse(docData).getAsJsonObject();
-		
+		System.out.println("1");
 		String id = jsonObject.get("ID").getAsString();
-		
+		System.out.println("2");
 		String output = doc.deleteDoctor(id);
 		
 		return output;

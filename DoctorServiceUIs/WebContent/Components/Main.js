@@ -44,7 +44,8 @@ $(document)
 					serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
 					if (type == "PUT") {
 						serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
-								+ $("#hidItemIDSave").val().trim()
+							//	 $("#hidItemIDSave").val().trim()
+							doctor["ID"] = $("#hidItemIDSave").val()
 					}
 					
 					$.ajax({
@@ -137,7 +138,7 @@ function validateItemForm() {
 		return "Insert Doctor Charge.";
 	}
 	
-	var Charge = $("#charge").val().trim();
+	var Charge = $("#dFee").val().trim();
 	if (!$.isNumeric(Charge)) {
 		return "Doctor Charge should be numeric.";
 	}

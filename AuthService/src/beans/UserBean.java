@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserBean {
 
+	
 	private int id ;
 	private String role, username,password;
 	

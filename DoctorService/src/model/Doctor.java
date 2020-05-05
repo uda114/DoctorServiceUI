@@ -62,13 +62,15 @@ public class Doctor {
 			con.close();
 			preparedStatement.close();
 			
-			output="Insert Successfully";
-			System.out.println(output);
+
+			String newItems = readDoctors();
+			output = "{\"status\":\"success\"}";
+			//System.out.println(output);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			
-			output="Error inserting data";
+			output = "{\"status\":\"error\"}"; 
 			System.out.println(e.getMessage());
 			
 		}
@@ -88,9 +90,9 @@ public class Doctor {
 			}
 			
 			//ID`, `dName`, `dSpecialization`, `dAddress`, `dEmail`, `dFee`, `dWHospital
-			output="<table class=\"table\" border =\"1\">"
-					+ "<tr><th>Name</th><th>Specialization</th><th>Address</th><th>E-mail</th><th>Charges</th><th>Working Hospital</th>"
-					+ "<th>Update</th><th>Remove</th></tr>";
+			output="<table class=\"table table-striped\" >"
+					+ "<thead><tr><th>Name</th><th>Specialization</th><th>Address</th><th>E-mail</th><th>Charges</th><th>Working Hospital</th>"
+					+ "<th>Update</th><th>Remove</th></tr></thead>";
 			
 			String query="select * from doctors";
 			Statement statement = con.createStatement();
@@ -107,17 +109,30 @@ public class Doctor {
 				String hospitals = set.getString("dWHospital");
 				
 			
-				output += "<tr><th>" + name +"</th>";
-				output += "<th>" + specialization + "</th>";
-				output += "<th>" + address + "</th>";
-				output += "<th>" + email + "</th>";
-				output += "<th>" + charges + "</th>";
-				output += "<th>" + hospitals + "</th>";
+				output += "<tr><td><input id='hidItemIDUpdate'"
+						+ "name='hidItemIDUpdate' type='hidden' "
+						+ "value='"+ id + "'>" + name +"</td>";
+				output += "<td>" + specialization + "</td>";
+				output += "<td>" + address + "</td>";
+				output += "<td>" + email + "</td>";
+				output += "<td>" + charges + "</td>";
+				output += "<td>" + hospitals + "</td>";
 				
-				output += "<td><input type=\"button\" name=\"btnUpdate\" value=\"update\"></td>"
-						+ "<td><form method=\"post\" action=\"doctor.jsp\">"
-						+ "<input name=\"btnRemove\" value=\"remove\" type=\"submit\">"
-						+ "<input name=\"id\" type=\"hidden\" value=\"" + id + "\">" + "</form></td></tr>" ;
+				/*
+				 * output +=
+				 * "<td><input type=\"button\" name=\"btnUpdate\" value=\"update\"></td>" +
+				 * "<td><form method=\"post\" action=\"doctor.jsp\">" +
+				 * "<input name=\"btnRemove\" value=\"remove\" type=\"submit\">" +
+				 * "<input name=\"id\" type=\"hidden\" value=\"" + id + "\">" +
+				 * "</form></td></tr>" ;
+				 */
+				
+				 output += "<td><input name='btnUpdate' type='button' "
+					 		+ "value='Update'class='btnUpdate btn btn-secondary'></td> "
+					 		+ "<td><input name='btnRemove' type='button' value='Remove' "
+					 		+ "class='btnRemove btn btn-danger' data-itemid='" 
+							 + id + "'>" + "</td></tr>";
+				
 			}
 			
 			con.close();
@@ -130,7 +145,7 @@ public class Doctor {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			output = "Cannot read the data";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}"; 
 			System.err.println(e.getMessage());
 	
 		}
@@ -159,13 +174,15 @@ public class Doctor {
 			preparedStatement.execute();
 			con.close();
 			
-			output = "Delete Successsfully";
-			System.out.println(output);
+			String newItems = readDoctors();
+			output = "{\"status\":\"success\"}";
+			
+			//System.out.println(output);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			
-			output ="Error deleting data";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		
@@ -173,9 +190,9 @@ public class Doctor {
 	}
 
 	public String updateDoctor(String ID, String name, String specialization, String address, String email, String fee, String wHospital)
-	{
+	{			System.out.println("1");
 		try {
-			
+			System.out.println("2");
 			Connection con = connect();
 			
 			if(con == null) {
@@ -189,6 +206,8 @@ public class Doctor {
 			
 			PreparedStatement preparedStatement = con.prepareStatement(query);
 			
+			System.out.println("3");
+			
 			preparedStatement.setString(1, name);
 			preparedStatement.setString(2, specialization);
 			preparedStatement.setString(3, address);
@@ -197,16 +216,19 @@ public class Doctor {
 			preparedStatement.setString(6, wHospital);
 			preparedStatement.setInt(7, Integer.parseInt(ID));
 			
+			System.out.println("4");
+			
 			preparedStatement.execute();
 			con.close();
 			preparedStatement.close();
 			
-			output ="Update successfully";
-			System.out.println(output);
+			
+			output = "{\"status\":\"success\"}";
+			//System.out.println(output);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			output =" Error updating data";
+			output = "{\"status\":\"error\"}"; 
 			System.err.println(e.getMessage());
 		}
 		
@@ -267,7 +289,7 @@ public class Doctor {
 
 		} catch (Exception e) {
 
-			output = "Cannot read the data";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}"; 
 			System.err.println(e.getMessage());
 				
 		}
