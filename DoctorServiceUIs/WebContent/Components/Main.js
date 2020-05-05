@@ -33,8 +33,7 @@ $(document).on("click","#btnSave",function(event) {
 					doctor["dWHospital"] = formObj.find("#dWHospital").val().trim()
 					
 
-					var type = ($("#hidItemIDSave").val() == "") ? "POST"
-							: "PUT";
+					var type = ($("#hidItemIDSave").val() == "") ? "POST": "PUT";
 					serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
 					if (type == "PUT") {
 						serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
@@ -51,8 +50,7 @@ $(document).on("click","#btnSave",function(event) {
 									+ btoa("admin" + ":" + "admin"));
 						},
 						complete : function(response, status) {
-							onItemSaveComplete(response.responseText,
-									status);
+							onItemSaveComplete(response.responseText,status);
 						}
 					});
 				});
@@ -94,8 +92,7 @@ $(document).on("click",".btnRemove",function(event) {
 										+ btoa("admin" + ":" + "admin"));
 							},
 							complete : function(response, status) {
-								onItemDeleteComplete(response.responseText,
-										status);
+								onItemDeleteComplete(response.responseText,status);
 							}
 
 						});
@@ -104,29 +101,36 @@ $(document).on("click",".btnRemove",function(event) {
 
 
 function validateItemForm() {
-	// Full Name
+	
 	if ($("#dName").val().trim() == "") {
 		return "Insert Name of Doctor.";
 	}
-	// Email
+	
 	if ($("#dEmail").val().trim() == "") {
 		return "Insert email Address.";
 	}
-	// Address
-	if ($("#dAddress").val().trim() == "") {
-		return "Insert Address Line 1.";
+	
+	var statusemail = validateEmail();	
+	if( statusemail != true ){
+		return "Invalid Email Address"
 	}
-	// Specialization-------------------------------
+	
+	
+	if ($("#dAddress").val().trim() == "") {
+		return "Insert Address.";
+	}
+	
+	
 	if ($("#dSpecialization").val().trim() == "") {
 		return "Insert Special Section of Doctor.";
 	}
 	
-	// Working Hospital
+	
 	if ($("#dWHospital").val().trim() == "") {
 		return "Insert Current Working Hospital.";
 	}
 	
-	// DocFee-------------------------------
+
 	if ($("#dFee").val().trim() == "") {
 		return "Insert Doctor Charge.";
 	}
@@ -137,12 +141,28 @@ function validateItemForm() {
 	}
 
 	
-
+	$("#dFee").val(parseFloat(Charge).toFixed(2)); 
+	 
 	return true;
+
 }
 
+function validateEmail() {
+    var emailID = document.formDoctor.dEmail.value;
+    atpos = emailID.indexOf("@");
+    dotpos = emailID.lastIndexOf(".");
+    
+    if (atpos < 1 || ( dotpos - atpos < 2 )) {
+       document.formDoctor.dEmail.focus() ;
+       return false;
+    }
+    return( true );
+ }
+
 function onItemSaveComplete(response, status) {
+	
 	if (status == "success") {
+		
 		var resultSet = JSON.parse(response);
 
 		if (resultSet.status.trim() == "success") {
@@ -152,14 +172,20 @@ function onItemSaveComplete(response, status) {
 			$("#divItemsGrid").html(resultSet.data);
 			
 		} else if (resultSet.status.trim() == "error") {
+			
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}
 
-	} else if (status == "error") {
+	} 
+	else if (status == "error") {
+		
 		$("#alertError").text("Error while saving.");
 		$("#alertError").show();
-	} else {
+	
+	}
+	else {
+		
 		$("#alertError").text("Unknown error while saving..");
 		$("#alertError").show();
 	}
@@ -172,25 +198,39 @@ function onItemSaveComplete(response, status) {
 
 
 function onItemDeleteComplete(response, status) {
+	
 	if (status == "success") {
+	
 		var resultSet = JSON.parse(response);
+		
 		if (resultSet.status.trim() == "success") {
+		
 			$("#alertSuccess").text("Successfully deleted.");
 			$("#alertSuccess").show();
 			$("#table").html(resultSet.data);
+		
 		} else if (resultSet.status.trim() == "error") {
+			
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}
-	} else if (status == "error") {
+	} 
+	else if (status == "error") {
+		
 		$("#alertError").text("Error while deleting.");
 		$("#alertError").show();
-	} else {
+	
+	}
+	else {
+		
 		$("#alertError").text("Unknown error while deleting..");
 		$("#alertError").show();
 	}
+	
 	refresh()
 }
+
+
 
 function refresh() {
 
@@ -206,7 +246,6 @@ function refresh() {
 			
 			$("#table").html(data);
 			
-		
 		}
 	});
 

@@ -9,12 +9,17 @@
 <script src="Components/jquery-3.3.1.min.js"></script>
 <script src="Components/Main.js"></script>
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
+<body style="background-color: #f2f2f2">
+<header>
+	<nav class="navbar fixed-top" style="background-color: #8088ff">
+	
+	</nav>
+</header>
+	<div class="container" >
+		<div class="row" style="background-color: #fcfcfc">
+			<div class="col-md-4" >
 
-				<h1 id="heading">Insert Doctor</h1>
+				<h1 id="heading">Add Doctor</h1>
 
 				<form id="formDoctor" name="formDoctor">
 				
@@ -35,14 +40,7 @@
 					
 					Working Hospital (gov): <input id="dWHospital" name="dWHospital" type="text"
 						class="form-control form-control-sm"> <br>
-					<!-- 	
-					Username: <input id="username" name="username" type="text"
-						class="form-control form-control-sm"> <br>
-					
-					Password: <input id="password" name="password" type="password"
-						class="form-control form-control-sm"> <br>
-					
- -->
+		
 					 <br> <input id="btnSave" name="btnSave" type="button"
 						value="Save" class="btn btn-primary"> <input type="hidden"
 						id="hidItemIDSave" name="hidItemIDSave" value="">
@@ -51,36 +49,20 @@
 				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
 				<br>
-
-
-
 			</div>
+			</div>
+			<br>
+			<br>
+			
+			<div class="row" style="background-color: #fcfcfc">
 			<div class="col-md-8">
 
 				<div class="container">
 					<h2>Doctors Table</h2>
 					<p>Available Doctors In The System</p>
 					<div id="table">
-					
-					
+				
 					</div>
-					<!-- <table class="table table-striped" id="doctorTable">
-						<thead>
-							<tr>
-								<th>Full Name</th>
-								<th>Specialization</th>
-								<th>Email</th>
-								<th>Address</th>
-								<th>Charge</th>
-								<th>Working Hospital</th>
-								<th>Update</th>
-								<th>Remove</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						</tbody>
-					</table> -->
 				</div>
 			</div>
 		</div>
