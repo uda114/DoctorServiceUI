@@ -63,7 +63,6 @@ public class Doctor {
 			preparedStatement.close();
 			
 
-			String newItems = readDoctors();
 			output = "{\"status\":\"success\"}";
 			//System.out.println(output);
 			
@@ -174,7 +173,6 @@ public class Doctor {
 			preparedStatement.execute();
 			con.close();
 			
-			String newItems = readDoctors();
 			output = "{\"status\":\"success\"}";
 			
 			//System.out.println(output);
