@@ -7,3 +7,7 @@ Server: apache-tomcat-9.0.19
 DoctorServiceUIs cantains index.jsp file and this is just a dynamic web project
 
 DoctorService and AuthService projects are maven progects
+
+helthcaresystem.sql is the database file of the system
+it contais two table doctor and users
+
