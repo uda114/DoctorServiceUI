@@ -9,13 +9,13 @@ $(document).ready(function() {
 
 $(document).on("click","#btnSave",function(event) {
 	
-					// Clear alerts---------------------
+					
 					$("#alertSuccess").text("");
 					$("#alertSuccess").hide();
 					$("#alertError").text("");
 					$("#alertError").hide();
-					// Form validation-------------------
-					var status = validateItemForm();
+					
+					var status = validateDoctorForm();
 					if (status != true) {
 						$("#alertError").text(status);
 						$("#alertError").show();
@@ -33,11 +33,11 @@ $(document).on("click","#btnSave",function(event) {
 					doctor["dWHospital"] = formObj.find("#dWHospital").val().trim()
 					
 
-					var type = ($("#hidItemIDSave").val() == "") ? "POST": "PUT";
+					var type = ($("#hidDoctorIDSave").val() == "") ? "POST": "PUT";
 					serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
 					if (type == "PUT") {
 						serviceUrl = "http://localhost:8080/DoctorService/DoctorService/Doctors/"
-							doctor["ID"] = $("#hidItemIDSave").val()
+							doctor["ID"] = $("#hidDoctorIDSave").val()
 					}
 					
 					$.ajax({
@@ -50,7 +50,7 @@ $(document).on("click","#btnSave",function(event) {
 									+ btoa("admin" + ":" + "admin"));
 						},
 						complete : function(response, status) {
-							onItemSaveComplete(response.responseText,status);
+							onDoctorSaveComplete(response.responseText,status);
 						}
 					});
 				});
@@ -61,7 +61,7 @@ $(document).on("click","#btnSave",function(event) {
 $(document).on("click",".btnUpdate",function(event) {
 	
 					$("#heading").text("Update Doctor");
-					$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());
+					$("#hidDoctorIDSave").val($(this).closest("tr").find('#hidDoctorIDUpdate').val());
 					$("#dName").val($(this).closest("tr").find('td:eq(0)').text());
 					$("#dSpecialization").val($(this).closest("tr").find('td:eq(1)').text());
 					$("#dAddress").val($(this).closest("tr").find('td:eq(2)').text());
@@ -92,7 +92,7 @@ $(document).on("click",".btnRemove",function(event) {
 										+ btoa("admin" + ":" + "admin"));
 							},
 							complete : function(response, status) {
-								onItemDeleteComplete(response.responseText,status);
+								onDoctorDeleteComplete(response.responseText,status);
 							}
 
 						});
@@ -100,7 +100,7 @@ $(document).on("click",".btnRemove",function(event) {
 				});
 
 
-function validateItemForm() {
+function validateDoctorForm() {
 	
 	if ($("#dName").val().trim() == "") {
 		return "Insert Name of Doctor.";
@@ -159,7 +159,7 @@ function validateEmail() {
     return( true );
  }
 
-function onItemSaveComplete(response, status) {
+function onDoctorSaveComplete(response, status) {
 	
 	if (status == "success") {
 		
@@ -197,7 +197,7 @@ function onItemSaveComplete(response, status) {
 } 
 
 
-function onItemDeleteComplete(response, status) {
+function onDoctorDeleteComplete(response, status) {
 	
 	if (status == "success") {
 	

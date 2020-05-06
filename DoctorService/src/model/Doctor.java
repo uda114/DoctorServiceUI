@@ -108,8 +108,8 @@ public class Doctor {
 				String hospitals = set.getString("dWHospital");
 				
 			
-				output += "<tr><td><input id='hidItemIDUpdate'"
-						+ "name='hidItemIDUpdate' type='hidden' "
+				output += "<tr><td><input id='hidDoctorIDUpdate'"
+						+ "name='hidDoctorIDUpdate' type='hidden' "
 						+ "value='"+ id + "'>" + name +"</td>";
 				output += "<td>" + specialization + "</td>";
 				output += "<td>" + address + "</td>";
