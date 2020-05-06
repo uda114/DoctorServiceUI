@@ -64,7 +64,7 @@ public class Doctor {
 			
 
 			output = "{\"status\":\"success\"}";
-			//System.out.println(output);
+			System.out.println("Insert successfully");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -175,7 +175,7 @@ public class Doctor {
 			
 			output = "{\"status\":\"success\"}";
 			
-			//System.out.println(output);
+			System.out.println("Delete successfully");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -188,9 +188,9 @@ public class Doctor {
 	}
 
 	public String updateDoctor(String ID, String name, String specialization, String address, String email, String fee, String wHospital)
-	{			System.out.println("1");
+	{			//System.out.println("1");
 		try {
-			System.out.println("2");
+			//System.out.println("2");
 			Connection con = connect();
 			
 			if(con == null) {
@@ -204,7 +204,7 @@ public class Doctor {
 			
 			PreparedStatement preparedStatement = con.prepareStatement(query);
 			
-			System.out.println("3");
+			//System.out.println("3");
 			
 			preparedStatement.setString(1, name);
 			preparedStatement.setString(2, specialization);
@@ -214,7 +214,7 @@ public class Doctor {
 			preparedStatement.setString(6, wHospital);
 			preparedStatement.setInt(7, Integer.parseInt(ID));
 			
-			System.out.println("4");
+			//System.out.println("4");
 			
 			preparedStatement.execute();
 			con.close();
@@ -222,7 +222,8 @@ public class Doctor {
 			
 			
 			output = "{\"status\":\"success\"}";
-			//System.out.println(output);
+			
+			System.out.println("Update successfully");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
